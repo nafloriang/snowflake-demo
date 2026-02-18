@@ -1,3 +1,14 @@
+# Assumed dependencies:
+# - dbt-core with Snowflake adapter
+# - Datavault-UK/automate_dv package installed via packages.yml
+# Execution order:
+# 1) dbt deps
+# 2) dbt run
+# 3) dbt test
+# Required dbt commands:
+# - dbt deps
+# - dbt run
+# - dbt test
 name: snowflake_demo
 version: 1.0.0
 config-version: 2
@@ -13,4 +24,4 @@ models:
       +materialized: view
     dv_raw:
       +schema: DV_RAW
-      +materialized: table
+      +materialized: incremental
