@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: landing
+    database: PLATFORM_DB
+    schema: LANDING
+    tables:
+      - name: LANDING_USERS
+      - name: LANDING_POSTS

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: hub_user
+    columns:
+      - name: user_hk
+        tests:
+          - not_null
+          - unique
+
+  - name: hub_post
+    columns:
+      - name: post_hk
+        tests:
+          - not_null
+          - unique

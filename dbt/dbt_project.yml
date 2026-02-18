@@ -1,0 +1,16 @@
+name: snowflake_demo
+version: 1.0.0
+config-version: 2
+
+profile: snowflake_demo
+
+model-paths: ["models"]
+
+models:
+  snowflake_demo:
+    staging:
+      +schema: STAGING
+      +materialized: view
+    dv_raw:
+      +schema: DV_RAW
+      +materialized: table
