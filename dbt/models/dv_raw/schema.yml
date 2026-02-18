@@ -1,0 +1,25 @@
+# Assumed dependencies:
+# - hub_user and hub_post models are generated via automate_dv macros
+# Execution order:
+# 1) dbt run
+# 2) dbt test
+# Required dbt commands:
+# - dbt deps
+# - dbt run
+# - dbt test
+version: 2
+
+models:
+  - name: hub_user
+    columns:
+      - name: USER_HK
+        tests:
+          - not_null
+          - unique
+
+  - name: hub_post
+    columns:
+      - name: POST_HK
+        tests:
+          - not_null
+          - unique

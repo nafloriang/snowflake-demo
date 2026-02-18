@@ -1,7 +1,28 @@
-SELECT DISTINCT
-  MD5(TO_VARCHAR(id)) AS user_hk,
-  id AS user_id,
-  ingested_at AS load_dts,
-  'LANDING_USERS' AS record_source
-FROM {{ ref('stg_users') }}
-WHERE id IS NOT NULL;
+-- Assumed dependencies:
+-- - Datavault-UK/automate_dv installed
+-- - model ref('stg_dv_users') available with USER_HK, USER_ID, LOAD_TS, RECORD_SOURCE
+-- Execution order:
+-- 1) Build stg_dv_users
+-- 2) Build hub_user
+-- 3) Build dependent link/sat models
+-- Required dbt commands:
+-- - dbt deps
+-- - dbt run
+-- - dbt test
+{%- set yaml_metadata -%}
+source_model: "stg_dv_users"
+src_pk: "USER_HK"
+src_nk: "USER_ID"
+src_ldts: "LOAD_TS"
+src_source: "RECORD_SOURCE"
+{%- endset -%}
+
+{% set metadata_dict = fromyaml(yaml_metadata) %}
+
+{{ automate_dv.hub(
+    src_pk=metadata_dict['src_pk'],
+    src_nk=metadata_dict['src_nk'],
+    src_ldts=metadata_dict['src_ldts'],
+    src_source=metadata_dict['src_source'],
+    source_model=metadata_dict['source_model']
+) }}
