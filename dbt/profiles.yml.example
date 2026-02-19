@@ -1,13 +1,14 @@
 snowflake_demo:
-  target: dev
+  target: ci
   outputs:
-    dev:
+    ci:
       type: snowflake
       account: "{{ env_var('DBT_ACCOUNT') }}"
       user: "{{ env_var('DBT_USER') }}"
       password: "{{ env_var('DBT_PASSWORD') }}"
-      role: "{{ env_var('DBT_ROLE', 'SYSADMIN') }}"
-      database: "{{ env_var('DBT_DATABASE', 'PLATFORM_DB') }}"
-      warehouse: "{{ env_var('DBT_WAREHOUSE', 'COMPUTE_WH') }}"
-      schema: "{{ env_var('DBT_SCHEMA', 'DV_RAW') }}"
+      role: "{{ env_var('DBT_ROLE') }}"
+      warehouse: "{{ env_var('DBT_WAREHOUSE') }}"
+      database: "{{ env_var('DBT_DATABASE') }}"
+      schema: "{{ env_var('DBT_SCHEMA') }}"
       threads: 4
+      client_session_keep_alive: false
