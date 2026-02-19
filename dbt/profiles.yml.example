@@ -3,11 +3,11 @@ snowflake_demo:
   outputs:
     dev:
       type: snowflake
-      account: <your_account>
-      user: <your_user>
-      password: <your_password>
-      role: <your_role>
-      database: PLATFORM_DB
-      warehouse: COMPUTE_WH
-      schema: STAGING
+      account: "{{ env_var('DBT_ACCOUNT') }}"
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      role: "{{ env_var('DBT_ROLE', 'SYSADMIN') }}"
+      database: "{{ env_var('DBT_DATABASE', 'PLATFORM_DB') }}"
+      warehouse: "{{ env_var('DBT_WAREHOUSE', 'COMPUTE_WH') }}"
+      schema: "{{ env_var('DBT_SCHEMA', 'DV_RAW') }}"
       threads: 4

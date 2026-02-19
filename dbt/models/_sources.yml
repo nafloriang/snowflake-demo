@@ -1,9 +1,9 @@
 version: 2
 
 sources:
-  - name: landing
+  - name: processing
     database: PLATFORM_DB
-    schema: LANDING
+    schema: PROCESSING
     tables:
-      - name: LANDING_USERS
-      - name: LANDING_POSTS
+      - name: users_tabular
+      - name: posts_tabular
